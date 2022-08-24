@@ -131,5 +131,23 @@ namespace Api.Controllers
             }
 
         }
+
+        [HttpGet]
+        [Route("ReportMoviesNeverRented")]
+        public async Task<IActionResult> GetReportMoviesNeverRentedAsync()
+        {
+            var filmes = await _filmeService.ListAsync();
+            List<Filme> filmesNaoAlugados = new List<Filme>();
+            foreach (var filme in filmes)
+            {
+                var quantidadeFilmesAlugados = _locacaoService.GetReportMoviesNeverRentedAsync(filme.Id).Result;
+
+                if (quantidadeFilmesAlugados.Count() == 0)
+                {
+                    filmesNaoAlugados.Add(filme);
+                }
+            }
+            return Ok(filmesNaoAlugados);
+        }
     }
 }

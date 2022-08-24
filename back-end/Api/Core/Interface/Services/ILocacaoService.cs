@@ -5,5 +5,6 @@ namespace Api.Core.Interface.Services
     public interface ILocacaoService : IService<Locacao>
     {
         Task<IEnumerable<Locacao>> GetReportLateReturnAsync();
+        Task<IEnumerable<Locacao>> GetReportMoviesNeverRentedAsync(int filmeID);
     }
 }

@@ -34,5 +34,10 @@ namespace Api.Domain.Repositories
         {
             return await _context.Set<Locacao>().Where(a => a.DataDevolucao <= DateTime.Now.Date).ToListAsync(); ;
         }
+        
+        public async virtual Task<IEnumerable<Locacao>> GetReportMoviesNeverRentedAsync(int filmeID)
+        {
+            return await _context.Set<Locacao>().Where(a => a.FilmeId == filmeID).ToListAsync(); ;
+        }
     }
 }
