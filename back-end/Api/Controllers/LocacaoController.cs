@@ -140,7 +140,7 @@ namespace Api.Controllers
             List<Filme> filmesNaoAlugados = new List<Filme>();
             foreach (var filme in filmes)
             {
-                var quantidadeFilmesAlugados = _locacaoService.GetReportMoviesNeverRentedAsync(filme.Id).Result;
+                var quantidadeFilmesAlugados = _locacaoService.GetReportRentedMovieAsync(filme.Id).Result;
 
                 if (quantidadeFilmesAlugados.Count() == 0)
                 {
@@ -148,6 +148,48 @@ namespace Api.Controllers
                 }
             }
             return Ok(filmesNaoAlugados);
+        }
+
+        [HttpGet]
+        [Route("ReportMostRentedMovies")]
+        public async Task<IActionResult> GetReportMostRentedMoviesAsync()
+        {
+            var filmes = await _filmeService.ListAsync();
+            var list = Enumerable.Empty<object>().Select(r => new { Titulo = "", VezesAlugado = 0 }).ToList();
+
+            foreach (var filme in filmes)
+            {
+                var quantidadeVezesFilmeAlugado = _locacaoService.GetReportRentedMovieWithDateAsync(filme.Id, DateTime.Now.AddYears(-1)).Result.Count();
+
+                list.Add(new { Titulo = filme.Titulo, VezesAlugado = quantidadeVezesFilmeAlugado });
+            }
+
+            list.Sort((l1, l2) => {
+                return l2.VezesAlugado.CompareTo(l1.VezesAlugado);
+            });
+
+            return Ok(list.Take(5));
+        }
+
+        [HttpGet]
+        [Route("ReportLessRentedMovies")]
+        public async Task<IActionResult> GetReportLessRentedMoviesAsync()
+        {
+            var filmes = await _filmeService.ListAsync();
+            var list = Enumerable.Empty<object>().Select(r => new { Titulo = "", VezesAlugado = 0 }).ToList();
+
+            foreach (var filme in filmes)
+            {
+                var quantidadeVezesFilmeAlugado = _locacaoService.GetReportRentedMovieWithDateAsync(filme.Id, DateTime.Now.AddDays(-7)).Result.Count();
+
+                list.Add(new { Titulo = filme.Titulo, VezesAlugado = quantidadeVezesFilmeAlugado });
+            }
+
+            list.Sort((l1, l2) => {
+                return l1.VezesAlugado.CompareTo(l2.VezesAlugado);
+            });
+
+            return Ok(list.Take(3));
         }
     }
 }

@@ -32,12 +32,17 @@ namespace Api.Domain.Repositories
 
         public async virtual Task<IEnumerable<Locacao>> GetReportLateReturnAsync()
         {
-            return await _context.Set<Locacao>().Where(a => a.DataDevolucao <= DateTime.Now.Date).ToListAsync(); ;
+            return await _context.Set<Locacao>().Where(a => a.DataDevolucao < DateTime.Now.Date).ToListAsync(); ;
         }
         
-        public async virtual Task<IEnumerable<Locacao>> GetReportMoviesNeverRentedAsync(int filmeID)
+        public async virtual Task<IEnumerable<Locacao>> GetReportRentedMovieAsync(int filmeID)
         {
             return await _context.Set<Locacao>().Where(a => a.FilmeId == filmeID).ToListAsync(); ;
+        }
+
+        public async virtual Task<IEnumerable<Locacao>> GetReportRentedMovieWithDateAsync(int filmeID, DateTime data)
+        {
+            return await _context.Set<Locacao>().Where(a => a.FilmeId == filmeID).Where(a=> a.DataLocacao >= data && a.DataLocacao <= DateTime.Now).ToListAsync(); ;
         }
     }
 }

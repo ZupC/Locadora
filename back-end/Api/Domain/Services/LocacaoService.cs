@@ -17,9 +17,13 @@ namespace Api.Domain.Services
         {
             return await _repository.GetReportLateReturnAsync();
         }
-        public async virtual Task<IEnumerable<Locacao>> GetReportMoviesNeverRentedAsync(int filmeID)
+        public async virtual Task<IEnumerable<Locacao>> GetReportRentedMovieAsync(int filmeID)
         {
-            return await _repository.GetReportMoviesNeverRentedAsync(filmeID);
+            return await _repository.GetReportRentedMovieAsync(filmeID);
+        }
+        public async virtual Task<IEnumerable<Locacao>> GetReportRentedMovieWithDateAsync(int filmeID, DateTime data)
+        {
+            return await _repository.GetReportRentedMovieWithDateAsync(filmeID, data);
         }
 
     }
