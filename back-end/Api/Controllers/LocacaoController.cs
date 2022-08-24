@@ -20,12 +20,14 @@ namespace Api.Controllers
         private readonly IMapper _mapper;
         private readonly ILocacaoService _locacaoService;
         private readonly IFilmeService _filmeService;
+        private readonly IClienteService _clienteService;
 
-        public LocacaoController(ILocacaoService locacaoService, IFilmeService filmeService, IMapper mapper)
+        public LocacaoController(ILocacaoService locacaoService, IFilmeService filmeService, IClienteService clienteService, IMapper mapper)
         {
             _mapper = mapper;
             _locacaoService = locacaoService;
             _filmeService = filmeService;
+            _clienteService = clienteService;
         }
 
         [HttpGet]
@@ -100,6 +102,34 @@ namespace Api.Controllers
             await _locacaoService.CommitAsync();
 
             return Ok(locacao);
+        }
+
+        [HttpGet]
+        [Route("ReportLateReturn")]
+        public async Task<IActionResult> GetReportLateReturnAsync()
+        {
+            var locacoesAtrasadas = await _locacaoService.GetReportLateReturnAsync();
+            List<Cliente> clientes = new List<Cliente>();
+
+            if (locacoesAtrasadas.Count() == 0)
+            {
+                return Ok("Não a devoluções atrasadas");
+            }
+            else
+            {
+                foreach (var locacaoAtrasada in locacoesAtrasadas)
+                {
+                    var cliente = _clienteService.FindByIdAsync(locacaoAtrasada.ClienteId).Result;
+
+                    if (!clientes.Contains(cliente))
+                    {
+                        clientes.Add(cliente);
+                    }
+                }
+
+                return Ok(clientes);
+            }
+
         }
     }
 }

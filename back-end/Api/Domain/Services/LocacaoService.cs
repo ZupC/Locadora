@@ -9,13 +9,14 @@ namespace Api.Domain.Services
     {
         protected new readonly ILocacaoRepository _repository;
 
-        public LocacaoService(ILocacaoRepository ordemServicoRepository) : base(ordemServicoRepository)
+        public LocacaoService(ILocacaoRepository locacaoRepository) : base(locacaoRepository)
         {
+            _repository = locacaoRepository;
+        }
+        public async virtual Task<IEnumerable<Locacao>> GetReportLateReturnAsync()
+        {
+            return await _repository.GetReportLateReturnAsync();
         }
 
-        //public string GeraProtocolo(Locacao locacao)
-        //{
-        //    return $"{locacao.Data.Ticks}";
-        //}
     }
 }

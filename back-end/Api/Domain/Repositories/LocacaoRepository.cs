@@ -29,5 +29,10 @@ namespace Api.Domain.Repositories
         {
             _context.Entry(obj).State = EntityState.Modified;
         }
+
+        public async virtual Task<IEnumerable<Locacao>> GetReportLateReturnAsync()
+        {
+            return await _context.Set<Locacao>().Where(a => a.DataDevolucao <= DateTime.Now.Date).ToListAsync(); ;
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace Api.Domain.Services
     {
         protected new readonly IFilmeRepository _repository;
 
-        public FilmeService(IFilmeRepository pacienteRepository) : base(pacienteRepository)
+        public FilmeService(IFilmeRepository filmeRepository) : base(filmeRepository)
         {
         }
     }
