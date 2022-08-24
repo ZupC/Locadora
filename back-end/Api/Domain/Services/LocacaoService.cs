@@ -26,5 +26,9 @@ namespace Api.Domain.Services
             return await _repository.GetReportRentedMovieWithDateAsync(filmeID, data);
         }
 
+        public async virtual Task<IEnumerable<Locacao>> GetReportCustomerRentedAsync(int clienteID)
+        {
+            return await _repository.GetReportCustomerRentedAsync(clienteID);
+        }
     }
 }

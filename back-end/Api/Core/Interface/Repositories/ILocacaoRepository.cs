@@ -7,5 +7,6 @@ namespace Api.Core.Interface.Repositories
         Task<IEnumerable<Locacao>> GetReportLateReturnAsync();
         Task<IEnumerable<Locacao>> GetReportRentedMovieAsync(int filmeID);
         Task<IEnumerable<Locacao>> GetReportRentedMovieWithDateAsync(int filmeID, DateTime data);
+        Task<IEnumerable<Locacao>> GetReportCustomerRentedAsync(int clienteID);
     }
 }

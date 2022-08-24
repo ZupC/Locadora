@@ -191,5 +191,26 @@ namespace Api.Controllers
 
             return Ok(list.Take(3));
         }
+
+        [HttpGet]
+        [Route("ReportSecondMostCustomerRented")]
+        public async Task<IActionResult> GetReportSecondMostCustomerRentedAsync()
+        {
+            var clientes = await _clienteService.ListAsync();
+            var list = Enumerable.Empty<object>().Select(r => new { Nome = "", VezesAlugado = 0 }).ToList();
+
+            foreach (var cliente in clientes)
+            {
+                var quantidadeVezesClienteAlugou = _locacaoService.GetReportCustomerRentedAsync(cliente.Id).Result.Count();
+
+                list.Add(new { Nome = cliente.Nome, VezesAlugado = quantidadeVezesClienteAlugou });
+            }
+
+            list.Sort((l1, l2) => {
+                return l2.VezesAlugado.CompareTo(l1.VezesAlugado);
+            });
+
+            return Ok(list[1]);
+        }
     }
 }
