@@ -4,7 +4,7 @@ import { Button, Table, Space } from 'antd';
 import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 
-const GroupList = () => {
+const ClientsList = () => {
 
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -83,4 +83,4 @@ const GroupList = () => {
   );
 };
 
-export default GroupList;
+export default ClientsList;
