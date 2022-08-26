@@ -75,7 +75,7 @@ namespace Api
             }
 
             app.UseCors(options =>
-                options.WithOrigins("http://localhost:4200")
+                options.WithOrigins("http://localhost:3000")
                     .AllowAnyMethod()
                     .AllowCredentials()
                     .AllowAnyHeader()
