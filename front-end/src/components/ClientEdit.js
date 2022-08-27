@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/locadora.service';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Form, Input, DatePicker } from 'antd';
+import { Button, Form, Input, DatePicker, Space } from 'antd';
 import moment from 'moment';
 import AppNavbar from './AppNavbar';
 
@@ -53,7 +53,7 @@ const ClientEdit = () => {
     navigate('/Cliente');
   }
 
-  const title = <h2>{client.id ? 'Editar cliente' : 'Adicionar cliente'}</h2>;
+  const title = <h2 className='headerCenter'>{client.id ? 'Editar cliente' : 'Adicionar cliente'}</h2>;
 
 
   return (<div>
@@ -77,8 +77,10 @@ const ClientEdit = () => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">Save</Button>
-        <Button type="primary" href="/Cliente">Cancel</Button>
+        <Space>
+          <Button type="primary" htmlType="submit">Save</Button>
+          <Button type="primary" href="/Cliente">Cancel</Button>
+        </Space>
       </Form.Item>
     </Form>
   </div>

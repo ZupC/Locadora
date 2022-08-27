@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/locadora.service';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Form, Input, DatePicker } from 'antd';
+import { Button, Form, Input, DatePicker, Space } from 'antd';
 import AppNavbar from './AppNavbar';
 
 const MovieEdit = () => {
@@ -51,7 +51,7 @@ const MovieEdit = () => {
     navigate('/Filme');
   }
 
-  const title = <h2>{movie.id ? 'Editar filme' : 'Adicionar filme'}</h2>;
+  const title = <h2 className='headerCenter'>{movie.id ? 'Editar filme' : 'Adicionar filme'}</h2>;
 
   return (<div>
     <AppNavbar />
@@ -74,8 +74,10 @@ const MovieEdit = () => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">Save</Button>
-        <Button type="primary" href="/Filme">Cancel</Button>
+        <Space>
+          <Button type="primary" htmlType="submit">Save</Button>
+          <Button type="primary" href="/Filme">Cancel</Button>
+        </Space>
       </Form.Item>
     </Form>
   </div>

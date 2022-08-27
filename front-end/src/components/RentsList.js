@@ -239,26 +239,27 @@ const RentsList = () => {
   return (
     <div>
       <AppNavbar />
-      <Button color="success" href="/Locacao/new">Nova locação</Button>
-      <h3>Minhas locações</h3>
-      <Table dataSource={dataSource} columns={columns} />;
+      <h1 className='headerCenter'>Minhas locações</h1>
+      <Button className='addBtnTable' type='primary' href="/Locacao/new">Nova locação</Button>
+      <Table className='table' dataSource={dataSource} columns={columns} />;
+
       <div>
-        <h2>Relatórios</h2>
+        <h2 className='headerCenter'>Relatórios</h2>
         <Collapse>
           <Panel header="Clientes em atraso na devolução" key="1">
-            <Table dataSource={dataSourceReportLateReturn} columns={columnsReportLateReturn} />;
+            <Table className='table' dataSource={dataSourceReportLateReturn} columns={columnsReportLateReturn} />;
           </Panel>
           <Panel header="Filmes que nunca foram alugados" key="2">
-            <Table dataSource={dataSourceReportMoviesNeverRented} columns={columnsReportMoviesNeverRented} />;
+            <Table className='table' dataSource={dataSourceReportMoviesNeverRented} columns={columnsReportMoviesNeverRented} />;
           </Panel>
           <Panel header="Cinco filmes mais alugados do último ano" key="3">
-            <Table dataSource={dataSourceReportMostRentedMovies} columns={columnsReportMostRentedMovies} />;
+            <Table className='table' dataSource={dataSourceReportMostRentedMovies} columns={columnsReportMostRentedMovies} />;
           </Panel>
           <Panel header="Três filmes menos alugados da última semana" key="4">
-            <Table dataSource={dataSourceReportLessRentedMovies} columns={columnsReportLessRentedMovies} />;
+            <Table className='table' dataSource={dataSourceReportLessRentedMovies} columns={columnsReportLessRentedMovies} />;
           </Panel>
           <Panel header="O segundo cliente que mais alugou filmes" key="5">
-            <Table dataSource={dataSourceReportSecondMostCustomerRented} columns={columnsReportSecondMostCustomerRented} />;
+            <Table className='table' dataSource={dataSourceReportSecondMostCustomerRented} columns={columnsReportSecondMostCustomerRented} />;
           </Panel>
         </Collapse>
       </div>

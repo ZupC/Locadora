@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import '../App.css'
 import api from '../services/locadora.service';
-import { Button, Table, Space } from 'antd';
+import { Button, Table, Row, Space, Col } from 'antd';
 import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 
@@ -37,7 +38,7 @@ const ClientsList = () => {
       render: (_, record) => {
         return (
           <Space size="middle">
-            <Button href ={`/Cliente/${record.key}`} type="primery">Editar</Button>
+            <Button href={`/Cliente/${record.key}`} type="primery">Editar</Button>
             <Button onClick={e => handleDeleteCliente(record.key)} type="primery" danger>Excluir</Button>
           </Space>
         );
@@ -76,9 +77,9 @@ const ClientsList = () => {
   return (
     <div>
       <AppNavbar />
-      <Button color="success" href="/Cliente/new">Novo cliente</Button>
-      <h3>Meus clientes</h3>
-      <Table dataSource={dataSource} columns={columns} />;
+        <h1 className='headerCenter'>Meus clientes</h1>
+        <Button className='addBtnTable' type='primary' href="/Cliente/new">Novo cliente</Button>
+        <Table className='table' dataSource={dataSource} columns={columns} />
     </div>
   );
 };

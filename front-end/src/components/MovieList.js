@@ -76,9 +76,9 @@ const MoviesList = () => {
   return (
     <div>
       <AppNavbar />
-      <Button color="success" href="/Filme/new">Novo filme</Button>
-      <h3>Meus filmes</h3>
-      <Table dataSource={dataSource} columns={columns} />;
+      <h1 className='headerCenter'>Meus filmes</h1>
+      <Button className='addBtnTable' type='primary' href="/Filme/new">Novo filme</Button>
+      <Table className='table' dataSource={dataSource} columns={columns} />;
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/locadora.service';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Form, Input, DatePicker, Select } from 'antd';
+import { Button, Form, Input, DatePicker, Select, Space } from 'antd';
 import AppNavbar from './AppNavbar';
 import moment from 'moment';
 
@@ -49,11 +49,11 @@ const RentEdit = () => {
   const handleChangeClient = (value) => {
     let client = clients.filter(i => i.nome === value)
     ref.current.setFieldsValue({
-      id_cliente : client[0].id,
+      id_cliente: client[0].id,
     });
   };
   //#endregion
-  
+
   //#region Filmes
   useEffect(() => {
     api.get('api/Filme').then(response => {
@@ -64,13 +64,13 @@ const RentEdit = () => {
   const movieOptions = [];
 
   movies.map(movie => {
-     movieOptions.push(<Option key={movie.id} value={movie.titulo}>{movie.titulo}</Option>);
+    movieOptions.push(<Option key={movie.id} value={movie.titulo}>{movie.titulo}</Option>);
   })
 
   const handleChangeMovie = (value) => {
     let movie = movies.filter(i => i.titulo === value)
     ref.current.setFieldsValue({
-      id_filme : movie[0].id,
+      id_filme: movie[0].id,
     });
   };
   //#endregion
@@ -102,7 +102,7 @@ const RentEdit = () => {
     navigate('/Locacao');
   }
 
-  const title = <h2>{rent.id ? 'Editar locação' : 'Adicionar locação'}</h2>;
+  const title = <h2 className='headerCenter'>{rent.id ? 'Editar locação' : 'Adicionar locação'}</h2>;
 
   return (<div>
     <AppNavbar />
@@ -133,8 +133,10 @@ const RentEdit = () => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">Save</Button>
-        <Button type="primary" href="/Locacao">Cancel</Button>
+        <Space>
+          <Button type="primary" htmlType="submit">Save</Button>
+          <Button type="primary" href="/Locacao">Cancel</Button>
+        </Space>
       </Form.Item>
     </Form>
   </div >

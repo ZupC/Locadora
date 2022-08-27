@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
+import '../App.css';
 const items = [
   {
     label: (
@@ -46,7 +47,7 @@ const AppNavbar = () => {
   };
 
   return (
-    <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} theme="dark" />
+    <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className='header'/>
   );
 };
 
