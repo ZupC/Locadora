@@ -17,4 +17,4 @@ Será listado todas as rotas do back-end, bem como utiliza-la.
 # Front-End
 
 No visual studio code, acesse a pasta Front-End e execute o comando: npm i
-Após a instalação dos pacotes basta acessar a url: http://localhost:3000/
+Após a instalação dos pacotes use o comando npm start e acesse a url: http://localhost:3000/
