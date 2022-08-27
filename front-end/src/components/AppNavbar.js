@@ -3,7 +3,7 @@ import { Menu } from 'antd';
 const items = [
   {
     label: (
-      <a href="#">
+      <a href="/">
         Home
       </a>
     ),

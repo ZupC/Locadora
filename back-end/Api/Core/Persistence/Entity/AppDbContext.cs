@@ -89,7 +89,9 @@ namespace Api.Core.Persistence.Entity
             Locacao.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
             Locacao.Property(p => p.DataLocacao).IsRequired().HasColumnType("Date");
             Locacao.Property(p => p.DataDevolucao).IsRequired().HasColumnType("Date");
+            Locacao.Property(p => p.Cliente).IsRequired().HasMaxLength(200);
             Locacao.Property(p => p.ClienteId).IsRequired();
+            Locacao.Property(p => p.Filme).IsRequired().HasMaxLength(50);
             Locacao.Property(p => p.FilmeId).IsRequired();
 
             var locacoes = new List<Locacao>()
@@ -97,7 +99,9 @@ namespace Api.Core.Persistence.Entity
                 new Locacao
                 {
                     Id = 1,
+                    Cliente = "Germano Pereira",
                     ClienteId = 1,
+                    Filme = "harry potter",
                     FilmeId = 1,
                     DataLocacao = new System.DateTime(2022, 8, 22),
                     DataDevolucao = new System.DateTime(2022, 8, 24),
@@ -105,7 +109,9 @@ namespace Api.Core.Persistence.Entity
                 new Locacao
                 {
                     Id = 2,
+                    Cliente = "Eduardo Silva",
                     ClienteId = 3,
+                    Filme = "O alto da compadecida",
                     FilmeId = 3,
                     DataLocacao = new System.DateTime(2022, 8, 22),
                     DataDevolucao = new System.DateTime(2022, 8, 25),
@@ -113,7 +119,9 @@ namespace Api.Core.Persistence.Entity
                 new Locacao
                 {
                     Id = 3,
-                    ClienteId = 5,
+                    Cliente = "Eduardo Silva",
+                    ClienteId = 4,
+                    Filme = "Senhor dos aneis",
                     FilmeId = 2,
                     DataLocacao = new System.DateTime(2022, 8, 22),
                     DataDevolucao = new System.DateTime(2022, 8, 25),
@@ -121,7 +129,9 @@ namespace Api.Core.Persistence.Entity
                 new Locacao
                 {
                     Id = 4,
-                    ClienteId = 6,
+                    Cliente = "Pedro Teixeira",
+                    ClienteId = 2,
+                    Filme = "Senhor dos aneis",
                     FilmeId = 2,
                     DataLocacao = new System.DateTime(2022, 8, 22),
                     DataDevolucao = new System.DateTime(2022, 8, 25),

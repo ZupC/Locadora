@@ -54,7 +54,11 @@ namespace Api.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Cliente = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     ClienteId = table.Column<int>(type: "int", nullable: false),
+                    Filme = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     FilmeId = table.Column<int>(type: "int", nullable: false),
                     DataLocacao = table.Column<DateTime>(type: "Date", nullable: false),
                     DataDevolucao = table.Column<DateTime>(type: "Date", nullable: false)
@@ -90,13 +94,13 @@ namespace Api.Migrations
 
             migrationBuilder.InsertData(
                 table: "Locacao",
-                columns: new[] { "Id", "ClienteId", "DataDevolucao", "DataLocacao", "FilmeId" },
+                columns: new[] { "Id", "Cliente", "ClienteId", "DataDevolucao", "DataLocacao", "Filme", "FilmeId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 8, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 2, 3, new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 3, 5, new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 4, 6, new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 }
+                    { 1, "Germano Pereira", 1, new DateTime(2022, 8, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "harry potter", 1 },
+                    { 2, "Eduardo Silva", 3, new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "O alto da compadecida", 3 },
+                    { 3, "Eduardo Silva", 4, new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Senhor dos aneis", 2 },
+                    { 4, "Pedro Teixeira", 2, new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Senhor dos aneis", 2 }
                 });
         }
 

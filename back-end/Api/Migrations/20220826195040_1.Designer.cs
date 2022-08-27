@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220824191435_1")]
+    [Migration("20220826195040_1")]
     partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -140,6 +140,11 @@ namespace Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("Cliente")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
@@ -148,6 +153,11 @@ namespace Api.Migrations
 
                     b.Property<DateTime>("DataLocacao")
                         .HasColumnType("Date");
+
+                    b.Property<string>("Filme")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("FilmeId")
                         .HasColumnType("int");
@@ -160,33 +170,41 @@ namespace Api.Migrations
                         new
                         {
                             Id = 1,
+                            Cliente = "Germano Pereira",
                             ClienteId = 1,
                             DataDevolucao = new DateTime(2022, 8, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataLocacao = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Filme = "harry potter",
                             FilmeId = 1
                         },
                         new
                         {
                             Id = 2,
+                            Cliente = "Eduardo Silva",
                             ClienteId = 3,
                             DataDevolucao = new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataLocacao = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Filme = "O alto da compadecida",
                             FilmeId = 3
                         },
                         new
                         {
                             Id = 3,
-                            ClienteId = 5,
+                            Cliente = "Eduardo Silva",
+                            ClienteId = 4,
                             DataDevolucao = new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataLocacao = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Filme = "Senhor dos aneis",
                             FilmeId = 2
                         },
                         new
                         {
                             Id = 4,
-                            ClienteId = 6,
+                            Cliente = "Pedro Teixeira",
+                            ClienteId = 2,
                             DataDevolucao = new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataLocacao = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Filme = "Senhor dos aneis",
                             FilmeId = 2
                         });
                 });

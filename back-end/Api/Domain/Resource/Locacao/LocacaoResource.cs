@@ -15,8 +15,5 @@ namespace Api.Domain.Resource.OrdemServico
         public DateTime DataLocacao { get; set; }
         [Required]
         public DateTime DataDevolucao { get; set; }
-
-        public FilmeResource Filme { get; set; }
-        public ClienteResource Cliente { get; set; }
     }
 }

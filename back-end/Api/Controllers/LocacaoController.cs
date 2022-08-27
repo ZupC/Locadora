@@ -155,13 +155,13 @@ namespace Api.Controllers
         public async Task<IActionResult> GetReportMostRentedMoviesAsync()
         {
             var filmes = await _filmeService.ListAsync();
-            var list = Enumerable.Empty<object>().Select(r => new { Titulo = "", VezesAlugado = 0 }).ToList();
+            var list = Enumerable.Empty<object>().Select(r => new {id = 0, Titulo = "", VezesAlugado = 0 }).ToList();
 
             foreach (var filme in filmes)
             {
                 var quantidadeVezesFilmeAlugado = _locacaoService.GetReportRentedMovieWithDateAsync(filme.Id, DateTime.Now.AddYears(-1)).Result.Count();
 
-                list.Add(new { Titulo = filme.Titulo, VezesAlugado = quantidadeVezesFilmeAlugado });
+                list.Add(new { id = filme.Id, Titulo = filme.Titulo, VezesAlugado = quantidadeVezesFilmeAlugado });
             }
 
             list.Sort((l1, l2) => {
@@ -176,13 +176,13 @@ namespace Api.Controllers
         public async Task<IActionResult> GetReportLessRentedMoviesAsync()
         {
             var filmes = await _filmeService.ListAsync();
-            var list = Enumerable.Empty<object>().Select(r => new { Titulo = "", VezesAlugado = 0 }).ToList();
+            var list = Enumerable.Empty<object>().Select(r => new { id = 0, Titulo = "", VezesAlugado = 0 }).ToList();
 
             foreach (var filme in filmes)
             {
                 var quantidadeVezesFilmeAlugado = _locacaoService.GetReportRentedMovieWithDateAsync(filme.Id, DateTime.Now.AddDays(-7)).Result.Count();
 
-                list.Add(new { Titulo = filme.Titulo, VezesAlugado = quantidadeVezesFilmeAlugado });
+                list.Add(new { id = filme.Id, Titulo = filme.Titulo, VezesAlugado = quantidadeVezesFilmeAlugado });
             }
 
             list.Sort((l1, l2) => {
@@ -197,13 +197,13 @@ namespace Api.Controllers
         public async Task<IActionResult> GetReportSecondMostCustomerRentedAsync()
         {
             var clientes = await _clienteService.ListAsync();
-            var list = Enumerable.Empty<object>().Select(r => new { Nome = "", VezesAlugado = 0 }).ToList();
+            var list = Enumerable.Empty<object>().Select(r => new { id = 0, Nome = "", VezesAlugado = 0 }).ToList();
 
             foreach (var cliente in clientes)
             {
                 var quantidadeVezesClienteAlugou = _locacaoService.GetReportCustomerRentedAsync(cliente.Id).Result.Count();
 
-                list.Add(new { Nome = cliente.Nome, VezesAlugado = quantidadeVezesClienteAlugou });
+                list.Add(new { id = cliente.Id, Nome = cliente.Nome, VezesAlugado = quantidadeVezesClienteAlugou });
             }
 
             list.Sort((l1, l2) => {
